@@ -17,7 +17,13 @@ const MobileNav = () => {
           />
         </SheetTrigger>
         <SheetContent className='flex flex-col gap-6 bg-white md:hidden'>
-          <Image src='/assets/images/logo.svg' alt='logo' width={38} height={38} />
+          <div className='flex items-center justify-start gap-3'>
+            <Image src='/assets/images/logo.svg' alt='logo' width={38} height={38} />
+            <p className='text-base font-bold text-primary-500 drop-shadow-[1px_1px_0.5px_rgba(0,0,0,0.7)] tracking-widest'>
+              EVENT<span className='text-white font-bold'>IFY</span>
+            </p>
+          </div>
+
           <Separator className='border border-slate-200' />
           <NavItems />
         </SheetContent>
