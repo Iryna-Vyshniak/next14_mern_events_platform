@@ -77,6 +77,58 @@ body {
   font-family: var(--font-poppins);
 }
 
+*,
+::before,
+::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(225, 0, 0, 0.765);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+}
+
 .filter-grey {
   filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%) hue-rotate(32deg)
     brightness(98%) contrast(92%);
@@ -228,4 +280,54 @@ body {
   .toggle-switch {
     @apply bg-gray-300 !important;
   }
+}
+
+/* ================ CLERK STYLES ================ */
+
+.dev-banner {
+  background-color: #dc0606;
+}
+
+.cl-internal-hegiim {
+  background-color: #dc0606;
+}
+
+.cl-logoImage {
+  height: 38px;
+}
+
+.cl-userButtonBox {
+  flex-direction: row-reverse;
+}
+
+.cl-userButtonOuterIdentifier {
+  font-size: 16px;
+}
+
+.cl-userButtonPopoverCard {
+  right: 4px !important;
+}
+
+.cl-formButtonPrimary {
+  background-color: #dc0606;
+}
+
+.cl-formButtonPrimary:hover,
+.cl-formButtonPrimary:focus,
+.cl-formButtonPrimary:active {
+  background-color: #b40303;
+}
+
+.cl-footerActionLink {
+  color: #dc0606;
+}
+.cl-footerActionLink:hover,
+.cl-footerActionLink:focus {
+  color: #b40303;
+}
+
+.cl-userButtonTrigger .cl-avatarBox.cl-userButtonAvatarBox {
+  width: 2.5rem;
+  height: 2.5rem;
+  --tw-ring-color: rgba(225, 0, 0, 0.765);
 }
