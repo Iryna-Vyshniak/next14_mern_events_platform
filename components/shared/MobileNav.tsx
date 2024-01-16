@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Separator } from '../ui/separator';
 import NavItems from './NavItems';
+import Logo from './Logo';
 
 const MobileNav = () => {
   return (
@@ -18,10 +19,7 @@ const MobileNav = () => {
         </SheetTrigger>
         <SheetContent className='flex flex-col gap-6 bg-white md:hidden'>
           <div className='flex items-center justify-start gap-3'>
-            <Image src='/assets/images/logo.svg' alt='logo' width={38} height={38} />
-            <p className='text-base font-bold text-primary-500 drop-shadow-[1px_1px_0.5px_rgba(0,0,0,0.7)] tracking-widest'>
-              EVENT<span className='text-white font-bold'>IFY</span>
-            </p>
+            <Logo src='/assets/images/logo.svg' label={true} />
           </div>
 
           <Separator className='border border-slate-200' />
