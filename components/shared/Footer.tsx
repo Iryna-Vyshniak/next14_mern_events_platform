@@ -1,7 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
-import Logo from '@/public/assets/icons/logo-grey.svg';
+import { socialsFooter } from '@/constants';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -9,9 +7,7 @@ const Footer = () => {
       <div className='container flex flex-wrap items-center justify-center mx-auto space-y-4 sm:justify-between sm:space-y-0'>
         <div className='flex flex-row pr-3 space-x-4 sm:space-x-8'>
           <div className='flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full dark:bg-violet-400'>
-            <Link href='/' className='flex-center w-38'>
-              <Image src={Logo} alt='Eventify logo' width={38} height={38} quality={100} />
-            </Link>
+            <Logo src='/assets/icons/logo-grey.svg' label={false} />
           </div>
           <ul className='flex flex-wrap items-center space-x-4 sm:space-x-8'>
             <li>
@@ -27,21 +23,17 @@ const Footer = () => {
           </ul>
         </div>
         <ul className='flex flex-wrap pl-3 space-x-4 sm:space-x-8'>
-          <li>
-            <a rel='noopener noreferrer' href='#' className='text-sm'>
-              Instagram
-            </a>
-          </li>
-          <li>
-            <a rel='noopener noreferrer' href='#' className='text-sm'>
-              Facebook
-            </a>
-          </li>
-          <li>
-            <a rel='noopener noreferrer' href='#' className='text-sm'>
-              Twitter
-            </a>
-          </li>
+          {socialsFooter.map(({ rel, href, label }, idx) => (
+            <li key={label + idx}>
+              <a
+                rel={rel}
+                href={href}
+                className='text-sm hover:text-primary-500 focus:text-primary-500 drop-shadow-[1px_1px_0.5px_rgba(250,250,250,1)]'
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </footer>
