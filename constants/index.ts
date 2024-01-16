@@ -15,3 +15,34 @@ export const headerLinks = [
         route: '/profile',
     },
 ]
+
+export const socialsFooter = [
+    {
+        rel: 'noopener noreferrer',
+        href: '#',
+        label: 'Instagram',
+    },
+    {
+        rel: 'noopener noreferrer',
+        href: '#',
+        label: 'Facebook',
+    },
+    {
+        rel: 'noopener noreferrer',
+        href: '#',
+        label: 'Twitter',
+    }
+]
+
+export const eventDefaultValues = {
+    title: '',
+    description: '',
+    location: '',
+    imageUrl: '',
+    startDateTime: new Date(),
+    endDateTime: new Date(),
+    categoryId: '',
+    price: '',
+    isFree: false,
+    url: '',
+}
