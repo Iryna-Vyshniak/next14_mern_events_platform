@@ -1,6 +1,6 @@
 'use server';
 
-import { CreateUserParams } from "@/types";
+import { CreateUserParams, UpdateUserParams } from "@/types";
 import { connectToDatabase } from "../database";
 import { handleError } from "../utils";
 
@@ -16,4 +16,19 @@ export const createUser = async (user: CreateUserParams) => {
     } catch (error) {
         handleError(error);
     }
+}
+
+export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
+    try {
+        await connectToDatabase();
+
+        const updateUser = await User.findByIdAndUpdate({ clerkId }, user, { new: true });
+
+        if (!updateUser) throw new Error('User update failed');
+
+        return JSON.parse(JSON.stringify(updateUser));
+    } catch (error) {
+        handleError(error);
+    }
+
 }
