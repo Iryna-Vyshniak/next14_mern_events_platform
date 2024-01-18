@@ -2,67 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Salsa&display=swap');
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: #ffffff;
+    --foreground: #f6f8fd;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: #ffffff;
+    --card-foreground: #f6f8fd;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: #ffffff;
+    --popover-foreground: #f6f8fd;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: #dc0606;
+    --primary-foreground: #fcfcfc;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: #0022b9;
+    --secondary-foreground: #dde9ff;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: #dc0606a0;
+    --muted-foreground: #e9a5a5;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: #002fff;
+    --accent-foreground: #9fc2ff;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: #ff0000;
+    --destructive-foreground: #d4d4d4;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: #d9eaf5;
+    --input: #d9eaf5;
+    --ring: #f6f8fd;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: #ffffff;
+    --foreground: #00002d;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: #010b46;
+    --card-foreground: #fdfdfd;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: #1504ad;
+    --popover-foreground: #f9f9fb;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: #dc0606;
+    --primary-foreground: #f9f9f9;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: #0022b9;
+    --secondary-foreground: #dde9ff;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: #dc0606a0;
+    --muted-foreground: #e9a5a5;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: #002fff;
+    --accent-foreground: #3764b4;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: #ff0000;
+    --destructive-foreground: #d4d4d4;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: #0029df;
+    --input: #0029df;
+    --ring: #0029df;
+
+    --radius: 0.5rem;
   }
 }
 
@@ -77,59 +81,7 @@ body {
   font-family: var(--font-poppins);
 }
 
-*,
-::before,
-::after {
-  --tw-border-spacing-x: 0;
-  --tw-border-spacing-y: 0;
-  --tw-translate-x: 0;
-  --tw-translate-y: 0;
-  --tw-rotate: 0;
-  --tw-skew-x: 0;
-  --tw-skew-y: 0;
-  --tw-scale-x: 1;
-  --tw-scale-y: 1;
-  --tw-pan-x: ;
-  --tw-pan-y: ;
-  --tw-pinch-zoom: ;
-  --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position: ;
-  --tw-gradient-via-position: ;
-  --tw-gradient-to-position: ;
-  --tw-ordinal: ;
-  --tw-slashed-zero: ;
-  --tw-numeric-figure: ;
-  --tw-numeric-spacing: ;
-  --tw-numeric-fraction: ;
-  --tw-ring-inset: ;
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(225, 0, 0, 0.765);
-  --tw-ring-offset-shadow: 0 0 #0000;
-  --tw-ring-shadow: 0 0 #0000;
-  --tw-shadow: 0 0 #0000;
-  --tw-shadow-colored: 0 0 #0000;
-  --tw-blur: ;
-  --tw-brightness: ;
-  --tw-contrast: ;
-  --tw-grayscale: ;
-  --tw-hue-rotate: ;
-  --tw-invert: ;
-  --tw-saturate: ;
-  --tw-sepia: ;
-  --tw-drop-shadow: ;
-  --tw-backdrop-blur: ;
-  --tw-backdrop-brightness: ;
-  --tw-backdrop-contrast: ;
-  --tw-backdrop-grayscale: ;
-  --tw-backdrop-hue-rotate: ;
-  --tw-backdrop-invert: ;
-  --tw-backdrop-opacity: ;
-  --tw-backdrop-saturate: ;
-  --tw-backdrop-sepia: ;
-}
-
-.filter-grey {
+.filter-slate {
   filter: brightness(0) saturate(100%) invert(47%) sepia(0%) saturate(217%) hue-rotate(32deg)
     brightness(98%) contrast(92%);
 }
@@ -151,24 +103,29 @@ body {
   /* TYPOGRAPHY */
   /* 64 */
   .h1-bold {
+    font-family: 'Salsa', cursive;
     @apply font-bold text-[40px] leading-[48px] lg:text-[48px] lg:leading-[60px]  xl:text-[58px] xl:leading-[74px];
   }
 
   /* 40 */
   .h2-bold {
+    font-family: 'Salsa', cursive;
     @apply font-bold text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
   }
 
   .h2-medium {
+    font-family: 'Salsa', cursive;
     @apply font-medium text-[32px] leading-[40px] lg:text-[36px] lg:leading-[44px] xl:text-[40px] xl:leading-[48px];
   }
 
   /* 36 */
   .h3-bold {
+    font-family: 'Salsa', cursive;
     @apply font-bold text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
   }
 
   .h3-medium {
+    font-family: 'Salsa', cursive;
     @apply font-medium text-[28px] leading-[36px] md:text-[36px] md:leading-[44px];
   }
 
@@ -256,21 +213,24 @@ body {
     @apply text-[12px] font-medium leading-[20px];
   }
 
+  .logo {
+    font-family: 'Salsa', cursive;
+  }
   /* SHADCN OVERRIDES */
   .select-field {
-    @apply w-full bg-grey-50 h-[54px] placeholder:text-grey-500 rounded-full p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent focus:ring-transparent !important;
+    @apply text-slate-900 w-full bg-slate-50 h-[54px] placeholder:text-slate-500 rounded-full p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent focus:ring-transparent drop-shadow-[1px_1px_1px_rgba(250,250,250,1)] shadow-inner shadow-slate-300 !important;
   }
 
   .input-field {
-    @apply bg-grey-50 h-[54px] focus-visible:ring-offset-0 placeholder:text-grey-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent !important;
+    @apply text-slate-900 bg-slate-100 h-[54px] focus-visible:ring-offset-0 placeholder:text-slate-500 rounded-full p-regular-16 px-4 py-3 border-none focus-visible:ring-transparent drop-shadow-[1px_1px_1px_rgba(250,250,250,1)] shadow-inner shadow-slate-300 !important;
   }
 
   .textarea {
-    @apply bg-grey-50 flex flex-1 placeholder:text-grey-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent !important;
+    @apply text-slate-900 bg-slate-100 flex flex-1 placeholder:text-slate-500 p-regular-16 px-5 py-3 border-none focus-visible:ring-transparent drop-shadow-[1px_1px_1px_rgba(250,250,250,1)] shadow-inner shadow-slate-300 !important;
   }
 
   .button {
-    @apply rounded-full h-[54px] p-regular-16;
+    @apply rounded-full h-[46px] p-regular-16;
   }
 
   .select-item {
