@@ -13,19 +13,19 @@
     --card-foreground: #f6f8fd;
 
     --popover: #ffffff;
-    --popover-foreground: #f6f8fd;
+    --popover-foreground: #bbc5de;
 
     --primary: #dc0606;
     --primary-foreground: #fcfcfc;
 
     --secondary: #0022b9;
-    --secondary-foreground: #dde9ff;
+    --secondary-foreground: #f1f1f2;
 
-    --muted: #dc0606a0;
-    --muted-foreground: #e9a5a5;
+    --muted: #dc0606c0;
+    --muted-foreground: #fecfcf;
 
     --accent: #002fff;
-    --accent-foreground: #9fc2ff;
+    --accent-foreground: #84deff;
 
     --destructive: #ff0000;
     --destructive-foreground: #d4d4d4;
@@ -38,7 +38,7 @@
   }
 
   .dark {
-    --background: #ffffff;
+    --background: #00003b;
     --foreground: #00002d;
 
     --card: #010b46;
@@ -234,22 +234,22 @@ body {
   }
 
   .select-item {
-    @apply py-3 cursor-pointer  focus:bg-primary-50;
+    @apply text-slate-900 py-3 cursor-pointer  focus:bg-primary-50;
   }
 
   .toggle-switch {
-    @apply bg-gray-300 !important;
+    @apply bg-slate-300 !important;
   }
 }
 
 /* ================ CLERK STYLES ================ */
 
 .dev-banner {
-  background-color: #dc0606;
+  background-color: var(--primary);
 }
 
 .cl-internal-hegiim {
-  background-color: #dc0606;
+  background-color: var(--primary);
 }
 
 .cl-logoImage {
@@ -269,25 +269,64 @@ body {
 }
 
 .cl-formButtonPrimary {
-  background-color: #dc0606;
+  background-color: var(--primary);
 }
 
 .cl-formButtonPrimary:hover,
 .cl-formButtonPrimary:focus,
 .cl-formButtonPrimary:active {
-  background-color: #b40303;
+  background-color: var(--primary);
 }
 
 .cl-footerActionLink {
-  color: #dc0606;
+  color: var(--primary);
 }
 .cl-footerActionLink:hover,
 .cl-footerActionLink:focus {
-  color: #b40303;
+  color: var(--primary);
 }
 
 .cl-userButtonTrigger .cl-avatarBox.cl-userButtonAvatarBox {
   width: 2.5rem;
   height: 2.5rem;
-  --tw-ring-color: rgba(225, 0, 0, 0.765);
+  --tw-ring-color: var(--primary);
+}
+
+/* ================== REACT-DATEPICKER STYLES ======================== */
+.datePicker {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  margin-left: 16px;
+}
+
+.react-datepicker__day--selected {
+  background-color: var(--primary) !important;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: var(--primary) !important;
+}
+
+.react-datepicker__header.react-datepicker__header--has-time-select,
+.react-datepicker__header.react-datepicker__header--time {
+  background-color: var(--primary) !important;
+}
+
+.react-datepicker__day--today {
+  color: var(--primary) !important;
+}
+
+.react-datepicker__day--selected.react-datepicker__current-month,
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker-time__header,
+.react-datepicker__day--selected {
+  color: #ffffff !important;
 }
