@@ -15,3 +15,9 @@ export type UpdateUserParams = {
     username: string,
     photo: string,
 }
+
+// === CATEGORY PARAMS ===
+
+export type CreateCategoryParams = {
+    categoryName: string,
+}
