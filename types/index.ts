@@ -105,3 +105,10 @@ export type GetRelatedEventsByCategoryParams = {
     limit?: number
     page: number | string
 }
+
+// === URL QUERY PARAMS ===
+
+export type SearchParamsProps = {
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
