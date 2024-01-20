@@ -50,7 +50,6 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
     })();
   }, []);
 
-  console.log('categories: ', categories);
   return (
     <Select onValueChange={onChangeHandler} defaultValue={value}>
       <SelectTrigger className='select-field'>
