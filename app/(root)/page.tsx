@@ -1,7 +1,11 @@
+import Collection from '@/components/shared/Collection';
 import Hero from '@/components/shared/Hero';
+import { getAllEvents } from '@/lib/actions/event.actions';
 import { SearchParamsProps } from '@/types';
 
-export default function Home({ searchParams }: SearchParamsProps) {
+export default async function Home({ searchParams }: SearchParamsProps) {
+  const events = await getAllEvents({ query: '', category: '', page: 1, limit: 6 });
+
   return (
     <>
       <Hero />
@@ -11,6 +15,15 @@ export default function Home({ searchParams }: SearchParamsProps) {
           Myriad Events
         </h2>
         <div className='flex flex-col gap-5 md:flex-row w-full'>Search CategoryFilter</div>
+        <Collection
+          data={events?.data}
+          emptyTitle='No events found'
+          emptyStateSubtext='Come back later'
+          collectionType='All_Events'
+          limit={6}
+          page={1}
+          totalPages={events?.totalPages}
+        />
       </section>
     </>
   );
