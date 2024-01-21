@@ -14,8 +14,7 @@ const Hero = () => {
             Discover, Connect, Improve: Your{' '}
             <span className=' text-primary-500 drop-shadow-[0px_1px_1px_rgba(0,0,0,1)]'>
               Events,
-            </span>
-            <br />
+            </span>{' '}
             Our Hub!
           </h1>
           <p className='p-regular-20 md:p-regular-24'>
