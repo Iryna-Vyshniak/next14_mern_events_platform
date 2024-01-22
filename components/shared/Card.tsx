@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { IEvent } from '@/lib/database/models/event.model';
 import { formatDateTime } from '@/lib/utils';
+import DeleteConfirmation from './DeleteConfirmation';
 
 const Card = ({
   event,
@@ -32,6 +33,8 @@ const Card = ({
           <Link href={`/events/${event._id}/update`}>
             <Image src='/assets/icons/edit.svg' alt='edit' width={20} height={20} />
           </Link>
+
+          <DeleteConfirmation eventId={event._id}/>
         </div>
       )}
 
