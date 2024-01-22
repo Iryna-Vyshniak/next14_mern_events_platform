@@ -6,6 +6,7 @@ import { handleError } from "../utils"
 import Event from "../database/models/event.model";
 import User from "../database/models/user.model";
 import Category from "../database/models/category.model";
+import { revalidatePath } from "next/cache";
 
 const populateEvent = async (query: any) => {
     return query
@@ -24,11 +25,12 @@ export const createEvent = async ({ event, userId, path }: CreateEventParams) =>
         if (!organizer) throw new Error(`Could not find the event organizer`);
 
         // create new event
-        const newEvent = Event.create({
+        const newEvent = await Event.create({
             ...event,
             category: event.categoryId,
-            organizer: userId,
-        });
+            organizer: userId
+        })
+        revalidatePath(path)
 
         return JSON.parse(JSON.stringify(newEvent));
     } catch (error) {
