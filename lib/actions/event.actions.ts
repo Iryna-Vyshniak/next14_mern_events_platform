@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { CreateEventParams, DeleteEventParams, GetAllEventsParams, GetRelatedEventsByCategoryParams } from "@/types";
+import { CreateEventParams, DeleteEventParams, GetAllEventsParams, GetRelatedEventsByCategoryParams, UpdateEventParams } from "@/types";
 import { connectToDatabase } from "../database";
 import { handleError } from "../utils"
 
@@ -115,6 +115,25 @@ export const getRelatedEventsByCategory = async ({ categoryId, eventId, limit = 
 
         return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
 
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+// update event
+export const updateEvent = async ({ userId, event, path }: UpdateEventParams) => {
+    try {
+        await connectToDatabase();
+
+        const eventToUpdate = await Event.findById(event._id);
+        if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
+            throw new Error('Unauthorized or event not found');
+        }
+
+        const updatedEvent = await Event.findByIdAndUpdate(event._id, { ...event, category: event.categoryId }, { new: true });
+        revalidatePath(path);
+
+        return JSON.parse(JSON.stringify(updatedEvent));
     } catch (error) {
         handleError(error);
     }
