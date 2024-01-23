@@ -34,7 +34,7 @@ const Card = ({
             <Image src='/assets/icons/edit.svg' alt='edit' width={20} height={20} />
           </Link>
 
-          <DeleteConfirmation eventId={event._id}/>
+          <DeleteConfirmation eventId={event._id} />
         </div>
       )}
 
@@ -47,7 +47,7 @@ const Card = ({
             <span className='flex items-center justify-center px-4 py-1 p-semibold-14 w-min rounded-full bg-green-50 text-green-800'>
               {event.isFree ? 'FREE' : `$${event.price}`}
             </span>
-            <p className='flex items-center justify-center px-4 py-1 p-semibold-14 w-min text-muted uppercase bg-muted-foreground rounded-full'>
+            <p className='flex items-center justify-center px-4 py-1 p-semibold-14 w-min text-muted uppercase bg-muted-foreground rounded-full line-clamp-1'>
               {event.category.name}
             </p>
           </div>
@@ -61,7 +61,7 @@ const Card = ({
         </p>
         <div className='flex-between w-full'>
           <p className='p-medium-14 md:p-medium-16 text-slate-800'>
-            {event.organizer.firstName} {event.organizer.lastName}
+            @{event.organizer.firstName} {event.organizer.lastName}
           </p>
           {hasOrderLink && (
             <Link href={`/orders?eventId=${event._id}`} className='flex gap-2'>
