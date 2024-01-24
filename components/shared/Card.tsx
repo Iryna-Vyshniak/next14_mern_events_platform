@@ -38,10 +38,7 @@ const Card = ({
         </div>
       )}
 
-      <Link
-        href={`/events/${event._id}`}
-        className='flex min-h-[230px] flex-col gap-3 p-5 md:gap-4'
-      >
+      <div className='flex min-h-[230px] flex-col gap-3 p-5 md:gap-4'>
         {!hidePrice && (
           <div className='flex gap-2'>
             <span className='flex items-center justify-center px-4 py-1 p-semibold-14 w-min rounded-full bg-green-50 text-green-800'>
@@ -70,7 +67,7 @@ const Card = ({
             </Link>
           )}
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
