@@ -53,9 +53,9 @@ const Card = ({
           {formatDateTime(event.startDateTime).dateTime}
         </p>
 
-        <Link href={`/events/${event._id}`}>
+        <Link href={`/events/${event._id}`} className='flex-1'>
           {' '}
-          <p className='flex-1 p-medium-16 md:medium-20 line-clamp-2 text-black drop-shadow-[0px_1px_1px_rgba(250,250,250,1)]'>
+          <p className='p-medium-16 md:medium-20 line-clamp-2 text-black drop-shadow-[0px_1px_1px_rgba(250,250,250,1)]'>
             {event.title}
           </p>
         </Link>
