@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { CreateEventParams, DeleteEventParams, GetAllEventsParams, GetRelatedEventsByCategoryParams, UpdateEventParams } from "@/types";
+import { CreateEventParams, DeleteEventParams, GetAllEventsParams, GetEventsByUserParams, GetRelatedEventsByCategoryParams, UpdateEventParams } from "@/types";
 import { connectToDatabase } from "../database";
 import { handleError } from "../utils"
 
@@ -17,7 +17,7 @@ const populateEvent = async (query: any) => {
         .populate({ path: 'category', model: Category, select: '_id name' })
 }
 
-//  greate event
+//  create event
 export const createEvent = async ({ event, userId, path }: CreateEventParams) => {
     try {
         await connectToDatabase();
@@ -99,21 +99,27 @@ export const deleteEvent = async ({ eventId, path }: DeleteEventParams) => {
 }
 
 // get events with same category
-
 export const getRelatedEventsByCategory = async ({ categoryId, eventId, limit = 3, page = 1 }: GetRelatedEventsByCategoryParams) => {
     try {
         await connectToDatabase();
 
         const skipAmount = (Number(page) - 1) * limit;
-        const conditions = { $and: [{ categoryId: categoryId }, { _id: { $ne: eventId } }] }
-        // $and (логічне "І") { categoryId: categoryId }: Умова, яка обмежує результати до документів, де поле categoryId дорівнює значенню categoryId. Це фільтрує результати за категорією.
+        const conditions = { $and: [{ category: categoryId }, { _id: { $ne: eventId } }] }
+        // $and (логічне "І") { category: categoryId }: Умова, яка обмежує результати до документів, де поле category дорівнює значенню categoryId. Це фільтрує результати за категорією.
         // { _id: { $ne: eventId } }: Умова, яка виключає документи з результатів, де поле _id не дорівнює значенню eventId.
 
-        const eventsQuery = await Event.find(conditions).sort({ createdAt: 'desc' }).skip(skipAmount).limit(limit);
+        const eventsQuery = Event.find(conditions)
+            .sort({ createdAt: 'desc' })
+            .skip(skipAmount)
+            .limit(limit);
+
         const events = await populateEvent(eventsQuery);
         const eventsCount = await Event.countDocuments(conditions);
 
-        return { data: JSON.parse(JSON.stringify(events)), totalPages: Math.ceil(eventsCount / limit) }
+        return {
+            data: JSON.parse(JSON.stringify(events)),
+            totalPages: Math.ceil(eventsCount / limit)
+        }
 
     } catch (error) {
         handleError(error);
@@ -134,6 +140,32 @@ export const updateEvent = async ({ userId, event, path }: UpdateEventParams) =>
         revalidatePath(path);
 
         return JSON.parse(JSON.stringify(updatedEvent));
+    } catch (error) {
+        handleError(error);
+    }
+}
+
+// get events by user
+export const getEventsByUser = async ({ userId, limit = 6, page }: GetEventsByUserParams) => {
+    try {
+        await connectToDatabase();
+
+        const conditions = { organizer: userId };
+        const skipAmount = (page - 1) * limit;
+
+        const eventsQuery = Event.find(conditions)
+            .sort({ createdAt: 'desc' })
+            .skip(skipAmount)
+            .limit(limit);
+
+        const events = await populateEvent(eventsQuery);
+        const eventsCount = await Event.countDocuments(conditions);
+
+        return {
+            data: JSON.parse(JSON.stringify(events)),
+            totalPages: Math.ceil(eventsCount / limit)
+        }
+
     } catch (error) {
         handleError(error);
     }
