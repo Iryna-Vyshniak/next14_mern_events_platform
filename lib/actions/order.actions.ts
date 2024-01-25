@@ -3,11 +3,13 @@
 import Stripe from 'stripe';
 import { redirect } from 'next/navigation';
 
-import { CheckoutParamsProps, CreateOrderParams } from "@/types";
+import { CheckoutParamsProps, CreateOrderParams, GetOrdersByUserParams } from "@/types";
 import { handleError } from '../utils';
 import { connectToDatabase } from '../database';
 
 import Order from '../database/models/order.model';
+import Event from '../database/models/event.model';
+import User from '../database/models/user.model';
 
 
 // checkout order information
@@ -64,3 +66,39 @@ export const createOrder = async (order: CreateOrderParams) => {
     }
 }
 
+
+// get orders by user
+export const getOrdersByUser = async ({ userId, limit = 3, page }: GetOrdersByUserParams) => {
+    try {
+        await connectToDatabase();
+
+        const skipAmount = (Number(page) - 1) * limit;
+        const conditions = { buyer: userId };
+        const populateCondition = {
+            path: 'event',
+            model: Event,
+            populate: {
+                path: 'organizer',
+                model: User,
+                select: '_id firstName lastName'
+            }
+        }
+
+        const orders = await Order.distinct('event._id') // distinct - масив унікальних значень _id, які знаходяться в полі event у всіх документах колекції Order.
+            .find(conditions)
+            .sort({ createdAt: 'desc' })
+            .skip(skipAmount)
+            .limit(limit)
+            .populate(populateCondition)
+
+        const ordersCount = await Order.distinct('event._id').countDocuments(conditions);
+
+        return {
+            data: JSON.parse(JSON.stringify(orders)),
+            totalPages: Math.ceil(ordersCount / limit)
+        }
+
+    } catch (error) {
+        handleError(error);
+    }
+}
