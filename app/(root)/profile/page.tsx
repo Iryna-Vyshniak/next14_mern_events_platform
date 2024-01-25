@@ -5,12 +5,20 @@ import { auth } from '@clerk/nextjs';
 import Collection from '@/components/shared/Collection';
 
 import { getEventsByUser } from '@/lib/actions/event.actions';
+import { getOrdersByUser } from '@/lib/actions/order.actions';
+
 import { SearchParamsProps } from '@/types';
 import { Button } from '@/components/ui/button';
+
+import { IOrder } from '@/lib/database/models/order.model';
 
 const ProfilePage = async ({ searchParams }: SearchParamsProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
+
+  const orders = await getOrdersByUser({ userId, page: 1 });
+
+  const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
 
   const organizedEvents = await getEventsByUser({
     userId,
@@ -30,6 +38,18 @@ const ProfilePage = async ({ searchParams }: SearchParamsProps) => {
           </Button>
         </div>
       </section>
+      <section className='wrapper my-8'>
+        <Collection
+          data={orderedEvents}
+          emptyTitle='No event tickets purchased yet'
+          emptyStateSubtext='No worries - plenty of exciting events to explore!'
+          collectionType='My_Tickets'
+          limit={3}
+          page={1}
+          urlParamName='ordersPage'
+          totalPages={orders?.totalPages}
+        />
+      </section>
 
       <section className='py-5 md:py-10 bg-primary-50 bg-dotted-pattern bg-cover bg-center'>
         <div className='wrapper flex flex-items justify-center sm:justify-between'>
@@ -47,7 +67,7 @@ const ProfilePage = async ({ searchParams }: SearchParamsProps) => {
           emptyTitle='No events have been created yet'
           emptyStateSubtext='Go create some events now'
           collectionType='Events_Organized'
-          limit={3}
+          limit={6}
           page={1}
           urlParamName='eventsPage'
           totalPages={organizedEvents?.totalPages}
