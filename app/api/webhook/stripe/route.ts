@@ -8,7 +8,7 @@ import { NextResponse } from 'next/server';
 import { createOrder } from '@/lib/actions/order.actions';
 
 
-export const POST = async (request: Request) => {
+export async function POST(request: Request) {
     const body = await request.text()
 
     const sig = request.headers.get('stripe-signature') as string
@@ -37,7 +37,7 @@ export const POST = async (request: Request) => {
             createdAt: new Date(),
         }
 
-        const newOrder = await createOrder(order)
+        const newOrder = await createOrder(order);
 
         return NextResponse.json({ message: 'OK', order: newOrder })
     }
