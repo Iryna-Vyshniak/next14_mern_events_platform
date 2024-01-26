@@ -1,5 +1,8 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import queryString from 'query-string';
+
+import { RemoveUrlQueryParams, UrlQueryParams } from "@/types";
 
 
 // --------- styles ------------- 
@@ -53,4 +56,47 @@ export const formatDateTime = (dateString: Date) => {
     dateOnly: formattedDate,
     timeOnly: formattedTime,
   }
+}
+
+// ------ format price -----------
+export const formatPrice = (price: string) => {
+  const amount = parseFloat(price)
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(amount)
+
+  return formattedPrice
+}
+
+
+// ------ form url -----------
+export function formUrlQuery({ params, key, value }: UrlQueryParams) {
+  const currentUrl = queryString.parse(params)
+
+  currentUrl[key] = value
+
+  return queryString.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    { skipNull: true }
+  )
+}
+
+export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryParams) {
+  const currentUrl = queryString.parse(params)
+
+  keysToRemove.forEach(key => {
+    delete currentUrl[key]
+  })
+
+  return queryString.stringifyUrl(
+    {
+      url: window.location.pathname,
+      query: currentUrl,
+    },
+    { skipNull: true }
+  )
 }
