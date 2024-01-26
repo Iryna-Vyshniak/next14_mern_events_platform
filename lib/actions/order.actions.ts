@@ -2,8 +2,9 @@
 
 import Stripe from 'stripe';
 import { redirect } from 'next/navigation';
+import { ObjectId } from 'mongodb';
 
-import { CheckoutParamsProps, CreateOrderParams, GetOrdersByUserParams } from "@/types";
+import { CheckoutParamsProps, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types";
 import { handleError } from '../utils';
 import { connectToDatabase } from '../database';
 
@@ -100,5 +101,69 @@ export const getOrdersByUser = async ({ userId, limit = 3, page }: GetOrdersByUs
 
     } catch (error) {
         handleError(error);
+    }
+}
+
+
+// Get orders by event
+export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEventParams) {
+    try {
+        await connectToDatabase()
+
+        if (!eventId) throw new Error('Event ID is required');
+
+        const eventObjectId = new ObjectId(eventId)
+
+        const orders = await Order.aggregate([
+            {
+                //  оператор $lookup для з'єднання документів із іншою колекцією
+                $lookup: {
+                    from: 'users',
+                    localField: 'buyer',
+                    foreignField: '_id',
+                    as: 'buyer',
+                    // as: 'buyer': Вказує назву нового поля, в яке будуть внесені дані з колекції 'users'. У цьому випадку, результат з'єднання буде збережено у новому полі з назвою 'buyer'
+                },
+            },
+            {
+                $unwind: '$buyer',
+                // $unwind: '$buyer', це означає, що MongoDB розгорне (розкриє) значення поля 'buyer' у вигляді окремих документів. Якщо поле 'buyer' було масивом, то кожен елемент масиву стане окремим документом. 
+            },
+            {
+                $lookup: {
+                    from: 'events',
+                    localField: 'event',
+                    foreignField: '_id',
+                    as: 'event',
+                },
+            },
+            {
+                $unwind: '$event',
+            },
+            {
+                // створення нового об'єкта документа з певними полями
+                $project: {
+                    _id: 1,
+                    totalAmount: 1,
+                    createdAt: 1,
+                    eventTitle: '$event.title',
+                    eventId: '$event._id',
+                    buyer: {
+                        $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
+                    },
+                },
+            },
+            {
+                // фільтрація документів в результаті агрегаційного запиту за заданими умовами
+                $match: {
+                    $and: [{ eventId: eventObjectId }, { buyer: { $regex: RegExp(searchString, 'i') } }],
+                },
+            },
+        ])
+
+        return JSON.parse(JSON.stringify(orders))
+
+    } catch (error) {
+        handleError(error)
     }
 }
