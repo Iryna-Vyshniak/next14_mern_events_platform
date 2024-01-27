@@ -10,9 +10,9 @@ type CheckoutProps = {
   userId: string;
 };
 
-const Checkout = ({ event, userId }: CheckoutProps) => {
-  loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
+const Checkout = ({ event, userId }: CheckoutProps) => {
   const onCheckout = async () => {
     const order = {
       eventTitle: event.title,
