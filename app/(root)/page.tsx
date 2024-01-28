@@ -1,10 +1,16 @@
+import CategoryFilter from '@/components/shared/CategoryFilter';
 import Collection from '@/components/shared/Collection';
 import Hero from '@/components/shared/Hero';
+import Search from '@/components/shared/Search';
 import { getAllEvents } from '@/lib/actions/event.actions';
 import { SearchParamsProps } from '@/types';
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-  const events = await getAllEvents({ query: '', category: '', page: 1, limit: 6 });
+  const page = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || '';
+  const category = (searchParams?.category as string) || '';
+
+  const events = await getAllEvents({ query: searchText, category, page, limit: 6 });
 
   return (
     <>
@@ -14,14 +20,17 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           Confidence Crafted through <br />
           Myriad Events
         </h2>
-        <div className='flex flex-col gap-5 md:flex-row w-full'>Search CategoryFilter</div>
+        <div className='flex flex-col gap-5 md:flex-row w-full'>
+          <Search placeholder='Search title...' />
+          <CategoryFilter />
+        </div>
         <Collection
           data={events?.data}
           emptyTitle='No events found'
           emptyStateSubtext='Come back later'
           collectionType='All_Events'
           limit={6}
-          page={1}
+          page={page}
           totalPages={events?.totalPages}
         />
       </section>

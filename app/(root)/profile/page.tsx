@@ -16,13 +16,16 @@ const ProfilePage = async ({ searchParams }: SearchParamsProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const orders = await getOrdersByUser({ userId, page: 1 });
+  const ordersPage = Number(searchParams?.orderPage) || 1;
+  const eventsPage = Number(searchParams?.eventsPage) || 1;
+
+  const orders = await getOrdersByUser({ userId, page: ordersPage });
 
   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
 
   const organizedEvents = await getEventsByUser({
     userId,
-    page: 1,
+    page: eventsPage,
     limit: 6,
   });
 
@@ -45,7 +48,7 @@ const ProfilePage = async ({ searchParams }: SearchParamsProps) => {
           emptyStateSubtext='No worries - plenty of exciting events to explore!'
           collectionType='My_Tickets'
           limit={3}
-          page={1}
+          page={ordersPage}
           urlParamName='ordersPage'
           totalPages={orders?.totalPages}
         />
@@ -67,8 +70,8 @@ const ProfilePage = async ({ searchParams }: SearchParamsProps) => {
           emptyTitle='No events have been created yet'
           emptyStateSubtext='Go create some events now'
           collectionType='Events_Organized'
-          limit={6}
-          page={1}
+          limit={3}
+          page={searchParams.page as string}
           urlParamName='eventsPage'
           totalPages={organizedEvents?.totalPages}
         />
