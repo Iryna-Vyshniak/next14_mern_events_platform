@@ -19,37 +19,15 @@ Built on Next.js 14, the events application stands as a comprehensive, full-stac
 - Zod
 - uploadthing
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px;">
+| ![Screenshot](/public/assets/images/Screenshot_1.png) | ![Screenshot](/public/assets/images/Screenshot_8.png) |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| ![Screenshot](/public/assets/images/Screenshot_2.png) | ![Screenshot](/public/assets/images/Screenshot_9.png) |
+| ![Screenshot](/public/assets/images/Screenshot_3.png) | ![Screenshot](/public/assets/images/Screenshot_10.png) |
+| ![Screenshot](/public/assets/images/Screenshot_4.png) | ![Screenshot](/public/assets/images/Screenshot_11.png) |
+| ![Screenshot](/public/assets/images/Screenshot_5.png) | ![Screenshot](/public/assets/images/Screenshot_12.png) |
+| ![Screenshot](/public/assets/images/Screenshot_6.png) | ![Screenshot](/public/assets/images/Screenshot_13.png) |
+| ![Screenshot](/public/assets/images/Screenshot_7.png) | ![Screenshot](/public/assets/images/Screenshot_14.png) |
 
-![Screenshot](/public/assets/images/Screenshot_1.png)
-
-![Screenshot](/public/assets/images/Screenshot_2.png)
-
-![Screenshot](/public/assets/images/Screenshot_3.png)
-
-![Screenshot](/public/assets/images/Screenshot_4.png)
-
-![Screenshot](/public/assets/images/Screenshot_5.png)
-
-![Screenshot](/public/assets/images/Screenshot_6.png)
-
-![Screenshot](/public/assets/images/Screenshot_7.png)
-
-![Screenshot](/public/assets/images/Screenshot_8.png)
-
-![Screenshot](/public/assets/images/Screenshot_9.png)
-
-![Screenshot](/public/assets/images/Screenshot_10.png)
-
-![Screenshot](/public/assets/images/Screenshot_11.png)
-
-![Screenshot](/public/assets/images/Screenshot_12.png)
-
-![Screenshot](/public/assets/images/Screenshot_13.png)
-
-![Screenshot](/public/assets/images/Screenshot_14.png)
-
-</div>
 
 ## <a name="features">🔋 Features</a>
 
