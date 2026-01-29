@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+  "node": ">=20"
+  },
   "dependencies": {
     "@clerk/nextjs": "^4.29.3",
     "@hookform/resolvers": "^3.3.4",
